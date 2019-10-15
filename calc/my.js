@@ -36,4 +36,37 @@ $(document).ready(function () {
   }
   TypePaper();
   TypeColor();
+  $(".calculate").change(function () {
+
+    tirSize = $("#tir").val() / 30;
+    pricePapper = $("#papper").val() * tirSize;
+    priceForma = typeColor[$("#color").val()]["file"];
+    pricePrint = typeColor[$("#color").val()]["print"] * tirSize;
+    sum = pricePapper + priceForma + pricePrint;
+    console.log(sum);
+    $("#itogo").html(sum);
+
+    if (color_format != $("#color").val()) {
+      color_format = $("#color").val();
+      $(".images img").hide(350);
+      switch (color_format) {
+
+        case "Односторонняя черно-белая":
+          $("#10").show(350);
+          break;
+        case "Двусторонняя черно-белая":
+          $("#11").show(350);
+          break;
+        case "Односторонняя цветная":
+          $("#40").show(350);
+          break;
+        case "Цветная с лицевой, ч/б с оборотной":
+          $("#41").show(350);
+          break;
+        case "Двусторонняя цветная":
+          $("#44").show(350);
+          break;
+      }
+    }
+  });
 });
